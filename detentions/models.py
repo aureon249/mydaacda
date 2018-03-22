@@ -4,8 +4,6 @@ from places.models import Place
 from labels.models import Label
 from regions.models import Region
 
-from .forms import PrisonStationForm
-
 
 class PrisonStation(models.Model):
     name = models.CharField(
@@ -27,15 +25,18 @@ class PrisonStation(models.Model):
         Region, blank=True, null=True, help_text="Region, in der das Gefangenenlager liegt",
         on_delete=None, verbose_name=ugettext_lazy("Region des Lagers")
         )
-    # part_of = models.ForeignKey(PrisonStation, blank=True, null=True,
-    #     help_text="Lager, dessen Teil dieses Gefangenenlager ist",
-    #     on_delete=None, verbose_name=ugettext_lazy("übergeordnetes Lager")
-    #     )
-    start_date = models.DateTimeField(
-        auto_now_add=True, help_text="Gründungsdatum des Gefangenenlagers",
+    part_of = models.ForeignKey("self", blank=True, null=True,
+        help_text="Lager, dessen Teil dieses Gefangenenlager ist",
+        on_delete=None, verbose_name=ugettext_lazy("übergeordnetes Lager")
+        )
+    start_date = models.DateField(
+        blank=True, null=True, help_text="Gründungsdatum des Gefangenenlagers",
         verbose_name=ugettext_lazy("Gründungsdatum")
         )
-    end_date = models.DateTimeField(
-        auto_now_add=True, help_text="Auflösungsdatum des Gefangenenlagers",
+    end_date = models.DateField(
+        blank=True, null=True, help_text="Auflösungsdatum des Gefangenenlagers",
         verbose_name=ugettext_lazy("Auflösungsdatum")
         )
+
+    def __str__(self):
+        return self.name
