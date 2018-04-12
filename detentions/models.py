@@ -1,8 +1,7 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy
-from places.models import Place
+from places.models import Place, Region
 from labels.models import Label
-from regions.models import Region
 
 
 class PrisonStation(models.Model):
@@ -19,11 +18,11 @@ class PrisonStation(models.Model):
         )
     located_in_place = models.ForeignKey(
         Place, blank=True, null=True, help_text="Ort, in dem das Gefangenenlager liegt",
-        on_delete=None, verbose_name=ugettext_lazy("Ort des Lagers")
+        on_delete=None, related_name='place_located', verbose_name=ugettext_lazy("Ort des Lagers")
         )
     located_in_region = models.ForeignKey(
-        Region, blank=True, null=True, help_text="Region, in der das Gefangenenlager liegt",
-        on_delete=None, verbose_name=ugettext_lazy("Region des Lagers")
+        Place, blank=True, null=True, help_text="Region, in der das Gefangenenlager liegt",
+        on_delete=None, related_name='region_located', verbose_name=ugettext_lazy("Region des Lagers")
         )
     part_of = models.ForeignKey("self", blank=True, null=True,
         help_text="Lager, dessen Teil dieses Gefangenenlager ist",

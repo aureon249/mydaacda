@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from labels.serializers import LabelSerializer
-from .models import Place
+from .models import Place, Region
 
 
 class PlaceSerializer(serializers.HyperlinkedModelSerializer):

@@ -1,0 +1,11 @@
+
+# Byte-compiled
+__pycache__/
+*.pyc
+
+/db.sqlite3
+
+# migrations
+detentions/migrations/*
+labels/migrations/*
+places/migrations/*

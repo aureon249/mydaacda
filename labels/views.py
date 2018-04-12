@@ -46,7 +46,4 @@ def label_edit(request, pk):
 class LabelDelete(DeleteView):
 	model = Label
 	template_name = 'webpage/confirm_delete.html'
-	success_url = reverse_lazy('labels:label_list')
-
-
-
+	success_url = 'labels:label_list'

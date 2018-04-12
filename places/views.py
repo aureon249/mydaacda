@@ -1,4 +1,3 @@
-import requests, re, json
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
@@ -6,9 +5,9 @@ from django.shortcuts import (render, render_to_response, get_object_or_404,
 	redirect)
 from django.views import generic
 from django.views.generic.edit import DeleteView
-from django.core.urlresolvers import reverse, reverse_lazy
+# from django.core.urlresolvers import reverse, reverse_lazy
 
-from .models import Place
+from .models import Place, Region
 from .forms import PlaceForm
 
 class PlaceListView(generic.ListView):
@@ -64,4 +63,4 @@ def edit_place(request, pk):
 class PlaceDelete(DeleteView):
 	model = Place
 	template_name = 'webpage/confirm_delete.html'
-	success_url = reverse_lazy('places:place_list')
+	success_url = 'places:place_list'

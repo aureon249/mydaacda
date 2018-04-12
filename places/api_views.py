@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from .serializers import PlaceSerializer
-from .models import Place
+from .models import Place, Region
 
 
 class PlaceViewSet(viewsets.ModelViewSet):
